@@ -2,7 +2,7 @@
 
 Name:           ocaml-stdio
 Version:        0.11.0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Standard IO library for OCaml
 
 %global libname %(echo %{name} | sed -e 's/^ocaml-//')
@@ -46,7 +46,7 @@ sed 's/ocamlopt/ocamlopt -g/g' -i Makefile
 export DESTDIR=%{buildroot}
 export OCAMLFIND_DESTDIR=%{buildroot}/%{_libdir}/ocaml
 mkdir -p $OCAMLFIND_DESTDIR
-make install PREFIX=$OCAMLFIND_DESTDIR
+dune install --prefix=$OCAMLFIND_DESTDIR --libdir=$OCAMLFIND_DESTDIR
 
 %files
 %doc README.org
@@ -71,6 +71,9 @@ make install PREFIX=$OCAMLFIND_DESTDIR
 %endif
 
 %changelog
+* Sat Aug  3 2019 Lucas Bickel <hairmare@rabe.ch> - 0.11.0-0.2
+- Fix dune libdir install
+
 * Sun Nov 11 2018 Lucas Bickel <hairmare@rabe.ch> - 0.11.0-0.1
 - Fix Fedora build by disabling debug package
 
