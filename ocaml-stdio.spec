@@ -43,7 +43,6 @@ sed 's/ocamlopt/ocamlopt -g/g' -i Makefile
 
 %install
 # Currently stdio installs itself with ocamlfind.
-export DESTDIR=%{buildroot}
 export OCAMLFIND_DESTDIR=%{buildroot}/%{_libdir}/ocaml
 mkdir -p $OCAMLFIND_DESTDIR
 dune install --prefix=$OCAMLFIND_DESTDIR --libdir=$OCAMLFIND_DESTDIR
