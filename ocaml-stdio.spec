@@ -1,14 +1,13 @@
 %define debug_package %{nil}
 
 Name:           ocaml-stdio
-Version:        0.11.0
-Release:        0.2%{?dist}
+Version:        0.13.0
+Release:        0.1%{?dist}
 Summary:        Standard IO library for OCaml
 
 %global libname %(echo %{name} | sed -e 's/^ocaml-//')
 
-# NOTE: The license changes to MIT at some point after the 0.11.0 tag
-License:        Apache-2.0
+License:        MIT
 URL:            https://github.com/janestreet/stdio/
 Source0:        https://github.com/janestreet/stdio/archive/v%{version}/%{name}-%{version}.tar.gz
 
@@ -50,7 +49,7 @@ dune install --prefix=$OCAMLFIND_DESTDIR --libdir=$OCAMLFIND_DESTDIR
 %files
 %doc README.org
 %doc %{_libdir}/ocaml/doc/%{libname}
-%license LICENSE.txt
+%license LICENSE.md
 %{_libdir}/ocaml/%{libname}
 %ifarch %{ocaml_native_compiler}
 %exclude %{_libdir}/ocaml/%{libname}/*.a
@@ -61,7 +60,7 @@ dune install --prefix=$OCAMLFIND_DESTDIR --libdir=$OCAMLFIND_DESTDIR
 %endif
 
 %files devel
-%license LICENSE.txt
+%license LICENSE.md
 %ifarch %{ocaml_native_compiler}
 %{_libdir}/ocaml/%{libname}/*.a
 %{_libdir}/ocaml/%{libname}/*.cmxa
@@ -70,6 +69,10 @@ dune install --prefix=$OCAMLFIND_DESTDIR --libdir=$OCAMLFIND_DESTDIR
 %endif
 
 %changelog
+* Sat May  2 2020 Lucas Bickel <hairmare@rabe.ch> - 0.13.0-0.1
+- Bump to 0.13.0
+- Switch to MIT license
+
 * Sat Aug  3 2019 Lucas Bickel <hairmare@rabe.ch> - 0.11.0-0.2
 - Fix dune libdir install
 
